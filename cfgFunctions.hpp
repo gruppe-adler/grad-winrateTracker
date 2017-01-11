@@ -7,9 +7,11 @@ class GRAD_winrateTracker {
         file = MODULES_DIRECTORY\grad-winrateTracker\functions;
 
         class compileForScoreboard {};
+        class findMax {};
         class findPlayerStats {};
         class findTeamName {};
         class findTeamWinrate {};
+        class playerWinratesToStrings {};
         class saveWinrate {};
         class sortStats {};
     };
