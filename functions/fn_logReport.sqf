@@ -2,9 +2,9 @@
 #define COMPONENT winrateTracker
 #include "\x\cba\addons\main\script_macros_mission.hpp"
 
-params ["_playerStatsArray","_teamStatsArray"];
+params ["_playerStatsArray","_teamStatsArray","_missionName"];
 
-INFO("STATS UPDATED: ===========================================================");
+INFO("STATS UPDATED FOR MISSION %1: ============================================",toUpper _missionName);
 
 {
     INFO_1("%1",_x);

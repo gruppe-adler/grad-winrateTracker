@@ -3,9 +3,10 @@ private ["_addWin","_addLoss","_teamStatsArray"];
 
 if (!isServer) exitWith {};
 
+_missionName = missionName;
 
 //PLAYER STATS =================================================================
-_playerStatsArrayName = format ["grad_winrateTracker_%1_playerStats", missionName];
+_playerStatsArrayName = format ["grad_winrateTracker_%1_playerStats", _missionName];
 _playerStatsArray = profileNamespace getVariable [_playerStatsArrayName,[]];
 if (count _playerStatsArray == 0) then {_playerStatsArray pushBack ["PLAYER","WINS","LOSSES","GAMES","WINRATE"]};
 {
@@ -37,7 +38,7 @@ if (!isNil "_winningSidesNames" && !isNil "_losingSidesNames") then {
     _winningSidesNames = if (typeName _winningSidesNames == "ARRAY") then {_winningSidesNames} else {[_winningSidesNames]};
     _losingSidesNames = if (typeName _losingSidesNames == "ARRAY") then {_losingSidesNames} else {[_losingSidesNames]};
 
-    _teamStatsArrayName = format ["grad_winrateTracker_%1_teamStats", missionName];
+    _teamStatsArrayName = format ["grad_winrateTracker_%1_teamStats", _missionName];
     _teamStatsArray = profileNamespace getVariable [_teamStatsArrayName,[]];
 
     //initialize team stats if this is the first save
@@ -83,7 +84,7 @@ saveProfileNamespace;
 
 if (isNil "_teamStatsArray") then {_teamStatsArray = []};
 
-[_playerStatsArray,_teamStatsArray] call grad_winrateTracker_fnc_logReport;
+[_playerStatsArray,_teamStatsArray,_missionName] call grad_winrateTracker_fnc_logReport;
 
 _scoreBoardArray = [_playerStatsArray,_teamStatsArray] call grad_winrateTracker_fnc_compileForScoreboard;
 

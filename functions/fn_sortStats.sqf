@@ -7,7 +7,7 @@ _dontHaveMinGames = [];
 _dontHaveMinGamesSortables = [];
 {
     if (_forEachIndex > 0) then {
-        if ((_x select 2) >= _minGames) then {
+        if ((_x select 3) >= _minGames) then {
             _haveMinGames pushBack _x;
             _haveMinGamesSortables pushBack (_x select _sortID);
         } else {
@@ -20,7 +20,6 @@ _dontHaveMinGamesSortables = [];
 
 //cut everything except headline
 _playerStats resize 1;
-
 
 while {count _haveMinGamesSortables > 0} do {
     _maxID = _haveMinGamesSortables call grad_winrateTracker_fnc_findMax;
