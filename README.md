@@ -32,6 +32,17 @@ class CfgFunctions {
 };
 ```
 
+## Usage
+
+### Resetting Stats
+To reset stats you can use `[_consent,_missionName] call grad_winrateTracker_fnc_resetStats`. This will delete all stats of the provided missionName.
+
+| Parameter   | Type   | Explanation                                                                                                 |
+|-------------|--------|-------------------------------------------------------------------------------------------------------------|
+| consent     | String | Function will only work if this is "I KNOW THIS WILL DELETE ALL STATS".                                     |
+| missionName | String | Optional. Mission name of stats to be reset. If not provided, mission name of current mission will be used. |
+
+
 ## Configuration
 You can configure this module in your `description.ext`. This is entirely optional however, since every setting has a default value.  
 All of these values only affect the returned array, that you can use with [GRAD Scoreboard](https://github.com/gruppe-adler/grad-scoreboard).

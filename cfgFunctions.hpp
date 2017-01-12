@@ -10,8 +10,9 @@ class GRAD_winrateTracker {
         class findMax {};
         class findPlayerStats {};
         class findTeamName {};
-        class findTeamWinrate {};
-        class playerWinratesToStrings {};
+        class getTeamWinrate {};
+        class logReport {};
+        class resetStats {};
         class saveWinrate {};
         class sortStats {};
     };
