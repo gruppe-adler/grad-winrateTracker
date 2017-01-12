@@ -22,7 +22,7 @@ class CfgFunctions {
 ### Via `npm`
 _for details about what npm is and how to use it, look it up on [npmjs.com](https://www.npmjs.com/)_
 
-1. Install package `grad-listbuymenu` : `npm install --save grad-listbuymenu`
+1. Install package `grad-winrateTracker` : `npm install --save grad-winrateTracker`
 2. Append the following lines of code to the `description.ext`:
 
 ```sqf
