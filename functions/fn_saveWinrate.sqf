@@ -3,7 +3,8 @@ private ["_addWin","_addLoss","_teamStatsArray"];
 
 if (!isServer) exitWith {};
 
-_missionName = missionName;
+_missionName = [missionConfigFile >> "CfgWinrateTracker" >> "sortBy", "missionName", missionName] call CBA_fnc_getConfigEntry;
+if (_missionName == "") then {_missionName = missionName};
 
 //PLAYER STATS =================================================================
 _playerStatsArrayName = format ["grad_winrateTracker_%1_playerStats", _missionName];

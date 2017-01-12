@@ -56,6 +56,7 @@ Add the class `CfgWinrateTracker` to your `description.ext`, then add any of the
 | minGamesForSort     | 5                           | minimum number of games a player needs to have to be in the upper ranks  |
 | playerStatsHeadline   | "PLAYER WINRATES"         | headline for scoreboard                                  |
 | teamStatsHeadline   | "TEAM WINRATES"             | headline for team stats                            |
+| missionName | missionName of current mission      | name that these stats will be saved under |
 
 
 Example:  
