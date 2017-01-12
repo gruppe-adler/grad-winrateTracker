@@ -34,6 +34,22 @@ class CfgFunctions {
 
 ## Usage
 
+## Saving Stats
+The mission ended, you now want to save the statistics. Use `[winning player names,losing player names,winning team names,losing team names] call grad_winrateTracker_fnc_saveWinrate`. An array is returned that can then be fed into [GRAD Scoreboard](https://github.com/gruppe-adler/grad-scoreboard) (not part of this module).
+
+| Parameter            | Type         | Explanation                                                                  |
+|----------------------|--------------|------------------------------------------------------------------------------|
+| winning player names | Array        | An array of names of all players who won this mission.                       |
+| losing player names  | Array        | An array of names of all players who lost this mission.                      |
+| winning team names   | Array/String | Optional. A single name or an array of names of teams who won this mission.  |
+| losing team names    | Array/String | Optional. A single name or an array of names of teams who lost this mission. |
+
+Example:  
+```sqf
+_stats = [["Frank","Heiner","Joachim"],["Thorsten","Jonas","Wolfgang"],"BLUFOR",["OPFOR","INDEPENDENT"]] call grad_winrateTracker_fnc_saveWinrate;
+_stats call grad_scoreboard_fnc_loadScoreboard;
+```
+
 ### Resetting Stats
 To reset stats you can use `[_consent,_missionName] call grad_winrateTracker_fnc_resetStats`. This will delete all stats of the provided missionName.
 
