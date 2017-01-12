@@ -2,12 +2,15 @@
 Tracks winrate for players and sides and saves them on the server.
 Can be used supplementary to [GRAD Scoreboard](https://github.com/gruppe-adler/grad-scoreboard) or standalone.
 
+Enables you to:
+* save statistics of multiple games of the same mission
+* save statistics of multiple games of different missions
+* generate a statistics array that you can feed into [GRAD Scoreboard](https://github.com/gruppe-adler/grad-scoreboard) to display it
 
 ## Dependencies
 * [CBA_A3](https://github.com/CBATeam/CBA_A3)
 
 ## Installation
-
 ### Manually
 1. Create a folder in your mission root folder and name it `modules`. Then create one inside there and call it `grad-winrateTracker`.
 2. Download the contents of this repository ( there's a download link at the side ) and put it into the directory you just created.
@@ -33,9 +36,22 @@ class CfgFunctions {
 ```
 
 ## Usage
+### Getting Playernames
+The mission just started and you want to save all names of players per side for later. Use `[side] call grad_winrateTracker_fnc_getPlayerNamesOfSide`.
 
-## Saving Stats
-The mission ended, you now want to save the statistics. Use `[winning player names,losing player names,winning team names,losing team names] call grad_winrateTracker_fnc_saveWinrate`. An array is returned that can then be fed into [GRAD Scoreboard](https://github.com/gruppe-adler/grad-scoreboard) (not part of this module).
+| Parameter | Type | Explanation                                                                                      |
+|-----------|------|--------------------------------------------------------------------------------------------------|
+| side      | side | Optional. The side of playernames to get. If no side is provided, all player names are returned. |
+
+Example:  
+```sqf
+myMission_bluforPlayers = [west] call grad_winrateTracker_fnc_getPlayerNamesOfSide;
+myMission_opforPlayers = [east] call grad_winrateTracker_fnc_getPlayerNamesOfSide;
+myMission_indepPlayers = [independent] call grad_winrateTracker_fnc_getPlayerNamesOfSide;
+```
+
+### Saving Stats
+The mission ended, you now want to save the statistics. Use `[winning player names,losing player names,winning team names,losing team names] call grad_winrateTracker_fnc_saveWinrate`. An array is returned that can then be fed into [GRAD Scoreboard](https://github.com/gruppe-adler/grad-scoreboard) (not part of this module). The stats are also logged in your server logfile.
 
 | Parameter            | Type         | Explanation                                                                  |
 |----------------------|--------------|------------------------------------------------------------------------------|
@@ -46,8 +62,22 @@ The mission ended, you now want to save the statistics. Use `[winning player nam
 
 Example:  
 ```sqf
-_stats = [["Frank","Heiner","Joachim"],["Thorsten","Jonas","Wolfgang"],"BLUFOR",["OPFOR","INDEPENDENT"]] call grad_winrateTracker_fnc_saveWinrate;
+_winners = myMission_bluforPlayers;                         //array that we saved at mission start
+_losers = myMission_opforPlayers + myMission_indepPlayers;  //arrays that we saved at mission start
+_stats = [_winners,_losers,"BLUFOR",["OPFOR","INDEPENDENT"]] call grad_winrateTracker_fnc_saveWinrate;
 _stats call grad_scoreboard_fnc_loadScoreboard;
+```
+
+### Getting Stats
+If you want the raw stats instead of the scoreboard array that is returned by `grad_winrateTracker_fnc_saveWinrate`, you can use `[mission name] call grad_winrateTracker_fnc_getStats`.
+
+| Parameter    | Type   | Explanation                                                                                                                                                  |
+|--------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| mission name | String | Optional. Mission name of stats to get. If none provided, missionName of config `CfgWinrateTracker` is used. If none found, name of current mission is used. |
+
+Example:  
+```sqf
+[missionName] call grad_winrateTracker_fnc_getStats;
 ```
 
 ### Resetting Stats
