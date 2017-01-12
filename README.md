@@ -109,9 +109,7 @@ Add the class `CfgWinrateTracker` to your `description.ext`, then add any of the
 | teamStatsHeadline   | "TEAM WINRATES"             | headline for team stats                            |
 | missionName | missionName of current mission      | name that these stats will be saved under |
 
-
 Example:  
-
 ```sqf
 class CfgWinrateTracker {
     scoreBoardDuration = 20;                            
@@ -121,3 +119,25 @@ class CfgWinrateTracker {
     teamStatsHeadline = "TEAM WINRATES";                
 };
 ```
+
+### minGamesForSort
+A few more words on this attribute. Let's say we set this to 10 and we sort by winrate. Let's also say we have 5 players:
+
+* Jim, 90% winrate, 5 games
+* Jeb, 70% winrate, 12 games
+* Joe, 20% winrate, 17 games
+* Jay, 75% winrate, 8 games
+* Jan, 30% winrate, 4 games
+
+They will be sorted like this, because only Jeb and Joe have more than minGamesForSort games played:
+
+| Rank | Player | Games | Winrate |
+|------|--------|-------|---------|
+| 1    | Jeb    | 12    | 70%     |
+| 2    | Joe    | 17    | 20%     |
+| 3    | Jim    | 5     | 90%     |
+| 4    | Jay    | 8     | 75%     |
+| 5    | Jan    | 4     | 30%     |
+
+### missionName
+If no missionName is set in config, the missionName of the current mission will be used. On a dedicated server, this is the .pbo name excluding the map tag. So if you have a missionfile called `TvT_myMission_1.3.2.Altis.pbo` and want the stats to be persistent across versions, you should set the missionName attribute in `CfgWinrateTracker` to `TvT_myMission`.
