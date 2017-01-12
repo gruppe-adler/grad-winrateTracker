@@ -33,7 +33,8 @@ class CfgFunctions {
 ```
 
 ## Configuration
-You can configure this module in your `description.ext`. This is entirely optional however, since every setting has a default value.
+You can configure this module in your `description.ext`. This is entirely optional however, since every setting has a default value.  
+All of these values only affect the returned array, that you can use with [GRAD Scoreboard](https://github.com/gruppe-adler/grad-scoreboard).
 
 Add the class `CfgWinrateTracker` to your `description.ext`, then add any of these attributes to configure the module:
 
