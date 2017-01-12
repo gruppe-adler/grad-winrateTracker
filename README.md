@@ -1,4 +1,4 @@
-# GRAD WinrateTracker (WIP)
+# GRAD WinrateTracker
 Tracks winrate for players and sides and saves them on the server.
 Can be used supplementary to [GRAD Scoreboard](https://github.com/gruppe-adler/grad-scoreboard) or standalone.
 
@@ -87,6 +87,11 @@ To reset stats you can use `[_consent,_missionName] call grad_winrateTracker_fnc
 |-------------|--------|-------------------------------------------------------------------------------------------------------------|
 | consent     | String | Function will only work if this is "I KNOW THIS WILL DELETE ALL STATS".                                     |
 | missionName | String | Optional. Mission name of stats to be reset. If not provided, mission name of current mission will be used. |
+
+Example:  
+```sqf
+["I KNOW THIS WILL DELETE ALL STATS"] call grad_winrateTracker_fnc_resetStats;
+```
 
 
 ## Configuration
