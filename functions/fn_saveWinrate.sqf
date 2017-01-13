@@ -50,7 +50,6 @@ if (!isNil "_winningSidesNames" && !isNil "_losingSidesNames") then {
             _data pushBack 0;
         };
         _teamStatsArray pushBack _data;
-        diag_log str _teamStatsArray;
     };
 
     _data = (_teamStatsArray select 1);
